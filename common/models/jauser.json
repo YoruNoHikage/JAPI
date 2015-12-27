@@ -1,0 +1,36 @@
+{
+  "name": "jauser",
+  "plural": "users",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "url": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "teams": {
+      "type": "hasAndBelongsToMany",
+      "model": "team",
+      "foreignKey": ""
+    },
+    "favorites": {
+      "type": "hasAndBelongsToMany",
+      "model": "game",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

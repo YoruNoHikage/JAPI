@@ -1,0 +1,25 @@
+{
+  "name": "team",
+  "plural": "teams",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "leader": {
+      "type": "belongsTo",
+      "model": "jauser",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
