@@ -5,7 +5,7 @@ module.exports = function(game) {
     game.disableRemoteMethod("upsert", true);
     game.disableRemoteMethod("updateAll", true);
     game.disableRemoteMethod("deleteById", true);
-    game.disableRemoteMethod("updateAttributes", false);
+    //game.disableRemoteMethod("updateAttributes", false);
     game.disableRemoteMethod("createChangeStream", true);
     game.disableRemoteMethod("count", true);
     game.disableRemoteMethod("findOne", true);

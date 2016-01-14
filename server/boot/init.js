@@ -1,7 +1,5 @@
 module.exports = function(app) {
     var User = app.models.jauser;
-    //var Role = app.models.Role;
-    //var RoleMapping = app.models.RoleMapping;
     var Team = app.models.team;
     var Game = app.models.game;
 
@@ -24,8 +22,8 @@ module.exports = function(app) {
                 console.log('Team base cleared.');
 
                 Team.create([
-                    {name: "Switchcode", leader : users[0].id},
-                    {name: "Valve", leader : users[2].id},
+                    {name: "Switchcode", leader : users[0]},
+                    {name: "Valve", leader : users[2]},
                 ], function(err, teams) {
                     if (err) throw err;
 
