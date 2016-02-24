@@ -9,7 +9,7 @@ module.exports = function(app) {
         console.log('User base cleared.');
 
         User.create([
-            {username: "Brindesable", email: 'brindesable@mail.com', password: 'opensesame'},
+            {username: 'Brindesable', email: 'brindesable@mail.com', password: 'opensesame'},
             {username: 'YoruNoHikage', email: 'yorunohikage@mail.com', password: 'opensesame'},
             {username: 'SteamDev', email: 'steamdev@mail.com', password: 'opensesame'}
         ], function(err, users) {
@@ -23,7 +23,7 @@ module.exports = function(app) {
 
                 Team.create([
                     {name: "Switchcode", leader : users[0]},
-                    {name: "Valve", leader : users[2]},
+                    {name: "Valve", leader : users[2]}
                 ], function(err, teams) {
                     if (err) throw err;
 
@@ -58,6 +58,11 @@ module.exports = function(app) {
                             createdAt : new Date(),
                             updatedAt : new Date(),
                             team : teams[0]
+                        },{
+                            name: "Flying Potato",
+                            createdAt : new Date(),
+                            updatedAt : new Date(),
+                            owner : users[0]
                         }], function(err, games) {
 
                             console.log('Games created.');

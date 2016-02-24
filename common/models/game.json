@@ -29,6 +29,11 @@
       "type": "belongsTo",
       "model": "team",
       "foreignKey": ""
+    },
+    "owner": {
+      "type": "belongsTo",
+      "model": "jauser",
+      "foreignKey": ""
     }
   },
   "acls": [

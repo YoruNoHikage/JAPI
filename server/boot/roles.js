@@ -6,12 +6,14 @@ module.exports = function(app) {
     var Role = app.models.Role;
 
     Role.registerResolver('team_member', function(role, context, cb) {
+
         function reject(err) {
             if(err) {
                 return cb(err);
             }
             cb(null, false);
         }
+
         if (context.modelName !== 'game') {
             // the target model is not project
             return reject();
@@ -26,22 +28,25 @@ module.exports = function(app) {
         context.model.findById(context.modelId, function(err, game) {
 
             if(err || !game) {
-                reject(err);
+                return reject(err);
+            }
+
+            if(game.ownerId == userId){
+                return cb(null, true);
             }
 
             User.findById(userId, function(err, user) {
 
                 if(err || !user) {
-                    reject(err);
+                    return reject(err);
                 }
 
                 // Silly :\ count would fit better
                 user.teams.findById(game.teamId, function(err, team) {
-
                     if(err){
-                        reject(err);
+                        return cb(null, false);
                     } else {
-                        cb(null, true);
+                        return cb(null, true);
                     }
 
                 });
