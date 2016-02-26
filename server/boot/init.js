@@ -54,7 +54,7 @@ module.exports = function(app) {
                             updatedAt : new Date(),
                             team : teams[1]
                         },{
-                            name: "8-Bit Robot Music Party",
+                            name: "8-Bit Robot Music Party 2",
                             createdAt : new Date(),
                             updatedAt : new Date(),
                             team : teams[0]
