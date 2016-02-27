@@ -19,7 +19,7 @@ module.exports = function(game) {
     game.disableRemoteMethod("upsert", true);
     game.disableRemoteMethod("updateAll", true);
     game.disableRemoteMethod("deleteById", true);
-    //game.disableRemoteMethod("updateAttributes", false);
+    game.disableRemoteMethod("updateAttributes", false);
     game.disableRemoteMethod("createChangeStream", true);
     game.disableRemoteMethod("count", true);
     game.disableRemoteMethod("findOne", true);
@@ -30,6 +30,14 @@ module.exports = function(game) {
         this.findOne({where: {slug: slug}}, function(err, data) {
             cb(null, data);
         });
+    }
+
+    game.upsertBySlug = function(slug, data, cb) {
+        // TODO
+    }
+
+    game.deleteBySlug = function(slug, cb) {
+        // TODO
     }
 
     game.remoteMethod('findBySlug', {
@@ -49,6 +57,40 @@ module.exports = function(game) {
         returns: {arg: 'data', type: game.modelName, root: true},
         http: {verb: 'get', path: '/:slug'},
         rest: {after: convertNullToNotFoundError}
+    });
+
+    game.remoteMethod('upsertBySlug', {
+        description: 'Update or create a model instance with given slug.',
+        accessType: 'WRITE',
+        accepts: [{
+            arg: 'slug',
+            type: 'any',
+            description: 'Model slug',
+            required: true,
+            http: {source: 'path'}
+        }, {
+            arg: 'data',
+            type: 'object',
+            http: {source: 'body'},
+            description: 'An object of model property name/value pairs'
+        }],
+        returns: {arg: 'data', type: game.modelName, root: true},
+        http: {verb: 'put', path: '/:slug'},
+        rest: {after: convertNullToNotFoundError}
+    });
+
+    game.remoteMethod('deleteBySlug', {
+        description: 'Delete a model instance with given slug.',
+        accessType: 'WRITE',
+        accepts: [{
+            arg: 'slug',
+            type: 'any',
+            description: 'Model slug',
+            required: true,
+            http: {source: 'path'}
+        }],
+        returns: {},
+        http: {verb: 'delete', path: '/:slug'},
     });
 
     /*
